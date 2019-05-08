@@ -7,11 +7,11 @@ node() {
         echo ">>>>>>>${check.GIT_COMMIT}"
        }
 
-  stage('build') {
-    echo ">>>>>>>123"
-        }
+   stage('build') {
+      step([$class: 'UploadBuild',tenantId: "5ade13625558f2c6688d15ce",revision: "${check.GIT_COMMIT}",appName: "Sapphire 2019-Jenkins-Demo",requestor: "admin",id: "${BUILD_NUMBER}"])
+  }
   
   stage('Dev Deployment') {
-  	echo ">>>>>>>12345"
-  } 
+  	build job: 'Velocity/dev_deploy', wait: false, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
+  }
 }
