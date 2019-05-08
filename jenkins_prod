@@ -1,7 +1,6 @@
 node() {
   
-  echo "${previousBuildNumber}"
-echo "${previousBuildUrl}"
+  echo ">>>>>>>>>>>>>>>>"
 
   stage('prodDeploy-Prepare') {
   }
