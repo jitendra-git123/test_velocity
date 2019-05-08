@@ -1,4 +1,3 @@
-properties([parameters([string(name: 'previousBuildNumber', description: 'The version of the application to deploy.'),string(name: 'previousBuildUrl', description: 'The URL of the build that triggered that deployment.')])])
 node() {
   
   echo "${previousBuildNumber}"
