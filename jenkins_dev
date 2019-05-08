@@ -6,8 +6,6 @@ echo "${previousBuildNumber}"
 echo "${previousBuildUrl}"
 
   stage('devDeploy-Prepare') {
-      checkout scm
-
   }
 
   stage('devDeploy') {
