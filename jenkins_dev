@@ -1,5 +1,3 @@
-@Library('piper-library-os') _
-
 properties([parameters([string(name: 'previousBuildNumber', description: 'The version of the application to deploy.'),string(name: 'previousBuildUrl', description: 'The URL of the build that triggered that deployment.')])])
 
 node() {
@@ -7,22 +5,13 @@ node() {
 echo "${previousBuildNumber}"
 echo "${previousBuildUrl}"
 
-  stage('neoDeploy') {
+  stage('devDeploy-Prepare') {
       checkout scm
 
-      setupCommonPipelineEnvironment script:this
-
-           checkChangeInDevelopment script: this,changeDocumentId:'8000004822'
-    
-      mtaBuild script: this
-      neoDeploy script: this
   }
 
-  stage('solmanTrCreate') {
-      transportRequestCreate script:this, changeDocumentId:'8000004822',developmentSystemId: 'SM1~ABAP/001',applicationId: 'HCP'
+  stage('devDeploy') {
   }
-  stage('solmanUpload') {
-      transportRequestUploadFile  script:this, changeDocumentId:'8000004822',developmentSystemId: 'SM1~ABAP/001',applicationId: 'HCP'
-  }
-  step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${previousBuildNumber}",versionExtId: "${previousBuildNumber}",type: 'Jenkins',environmentId: '1303f5a8-c2cf-4ef3-9d82-c2c4f4d03bff',environmentName: 'DEV',appId: 'd6f9065a-fad6-4077-85b6-066411c2beac',description: 'dev deployment from jenkins',appName: "Sapphire 2019-SAP-Jenkins-Demo",initiator: "admin",result: 'true'])
+
+  step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${previousBuildNumber}",versionExtId: "${previousBuildNumber}",type: 'Jenkins',environmentId: '0850aceb-c975-4581-b713-6c0f0d7495ce',environmentName: 'DEV',appId: '4b5e0e2c-af1a-4c20-9893-f3cc2b9a1360',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
 }
