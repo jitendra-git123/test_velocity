@@ -8,5 +8,5 @@ echo "${previousBuildUrl}"
 
   stage('prodDeploy') {
 }
-step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${previousBuildNumber}",versionExtId: "${previousBuildNumber}",type: 'Jenkins',environmentId: 'add21ca2-e579-4751-b57d-4195bbc284b2',environmentName: 'DEV',appId: '4b5e0e2c-af1a-4c20-9893-f3cc2b9a1360',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
+step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${BUILD_NUMBER}",versionExtId: "${BUILD_NUMBER}",type: 'Jenkins',environmentId: 'add21ca2-e579-4751-b57d-4195bbc284b2',environmentName: 'DEV',appId: '4b5e0e2c-af1a-4c20-9893-f3cc2b9a1360',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
 }
