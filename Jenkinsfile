@@ -15,7 +15,7 @@ node() {
   	build job: 'Velocity/dev_deploy', wait: false, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
   }
 
-stage ("build") {
+stage ("UCD_Devbuild") {
                 step([$class: 'UCDeployPublisher', 
                                                 component: [
                                                                 componentName: 'cole_demo',
