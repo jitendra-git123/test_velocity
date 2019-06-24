@@ -11,5 +11,5 @@ echo "${previousBuildUrl}"
   stage('devDeploy') {
   }
 
-  step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${previousBuildNumber}",versionExtId: "${previousBuildNumber}",type: 'Jenkins',environmentId: '0850aceb-c975-4581-b713-6c0f0d7495ce',environmentName: 'DEV',appId: '4b5e0e2c-af1a-4c20-9893-f3cc2b9a1360',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
+  step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${previousBuildNumber}",versionExtId: "${previousBuildNumber}",type: 'Jenkins',environmentId: '8329d3b3-a400-4894-95bd-29c16ec34a48',environmentName: 'DEV',appId: '88555a6a-190d-4096-b8f9-02401205f3ec',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
 }
