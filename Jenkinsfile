@@ -1,18 +1,31 @@
 node() {
   
+  def GIT_COMMIT
+  def majorVersion="CR-${BUILD_NUMBER}"
   def check
+
   stage('prepare') {
       check=checkout scm
-      echo "${check}"
-        echo ">>>>>>>${check.GIT_COMMIT}"
-       }
+      GIT_COMMIT = check.GIT_COMMIT
+	    echo "-===>>>>>>>>>>>>>>>>>${GIT_COMMIT}"     
+  }
 
-   stage('build') {
-      step([$class: 'UploadBuild',tenantId: "5ade13625558f2c6688d15ce",revision: "${check.GIT_COMMIT}",appName: "Sapphire 2019-Jenkins-Demo",requestor: "admin",id: "${BUILD_NUMBER}"])
+  stage('build') {
+      echo "-===>>>>>>>>>>>>>>>>>In Build stage<<<<<<<<<<<<<<<<<===-"
+  }
+
+  stage ('UCV Upload Build') {
+      step([$class: 'UploadBuild',
+      tenantId: "5ade13625558f2c6688d15ce",
+      revision: "${GIT_COMMIT}",
+      appName: "Sapphire-Jenkins",
+      requestor: "admin",
+      id: "${majorVersion}"
+      ])
   }
   
-  stage('Dev Deployment') {
-  	build job: 'Velocity/dev_deploy', wait: false, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
+  stage('Kick off Dev Deployment') {
+  	build job: 'Velocity/dev_deploy', wait: true, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
   }
 
 }
