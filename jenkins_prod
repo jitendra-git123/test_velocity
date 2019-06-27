@@ -1,11 +1,35 @@
+properties([
+    parameters([
+        string(name: 'majorVersion', description: 'The version of the application to deploy.'),
+        string(name: 'gitCommit', description: 'The git commit to deploy.')
+    ])
+])
+def majorVersionPassed="${majorVersion}"
+
 node() {
-  
-  echo ">>>>>>>>>>>>>>>>"
 
   stage('prodDeploy-Prepare') {
+    echo ">>>>>>>>>>>>>>>>"
+    echo "In Prepare Stage"
+    echo ">>>>>>>>>>>>>>>>"
   }
 
   stage('prodDeploy') {
-}
-step([$class: 'UploadDeployment',tenantId: "5ade13625558f2c6688d15ce",versionName: "${BUILD_NUMBER}",versionExtId: "${BUILD_NUMBER}",type: 'Jenkins',environmentId: 'add21ca2-e579-4751-b57d-4195bbc284b2',environmentName: 'DEV',appId: '4b5e0e2c-af1a-4c20-9893-f3cc2b9a1360',description: 'dev deployment from jenkins',appName: "Sapphire 2019-Jenkins-Demo",initiator: "admin",result: 'true'])
+    echo ">>>>>>>>>>>>>>>>"
+    echo "In PROD Deploy Stage"
+    echo ">>>>>>>>>>>>>>>>"
+  }
+ 
+ step([$class: 'UploadDeployment',
+               tenantId: "5ade13625558f2c6688d15ce",
+               versionName: "${majorVersionPassed}",
+               versionExtId: "${majorVersionPassed}",
+               type: 'Jenkins',
+               environmentId: 'c89a6e15-106e-4315-9c8a-f2151e1a88a4',
+               environmentName: 'PROD',
+               appId: '0922ab18-ea39-4bec-82c7-04bd680321b3',
+               description: 'PROD deployment from jenkins',
+               appName: "Sapphire-Jenkins",
+               initiator: "admin",
+               result: 'true'])
 }
