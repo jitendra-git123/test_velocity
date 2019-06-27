@@ -25,7 +25,7 @@ node() {
   }
   
   stage('Kick off Dev Deployment') {
-  	build job: 'Velocity/dev_deploy', wait: true, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
+  	build job: 'Velocity/sapphire_dev_deploy', wait: true, parameters: [string(name: 'previousBuildNumber', value: BUILD_NUMBER), string(name: 'previousBuildUrl', value: BUILD_URL)]
   }
 
 }
